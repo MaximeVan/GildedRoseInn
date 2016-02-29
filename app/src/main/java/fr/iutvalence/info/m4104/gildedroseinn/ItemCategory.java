@@ -38,11 +38,8 @@ public class ItemCategory implements ListAdapter {
    //     if (convertView == null) {
    //         convertView = LayoutInflater.from(this.context).inflate(R.layout.item_layout, parent, false);
    //         ItemCategory itemCategory = (ItemCategory) this.getItem(position);
-   //         //TextView textView = (TextView) convertView.findViewById(R.id.item_description);
+   //         TextView textView = (TextView) convertView.findViewById(R.id.item_description);
    //         TextView setText = (itemCategory.getDescription());
-   //         ImageView imageView = (ImageView) convertView.findViewById(R.id.item_logo);
-   //         //Drawable drawable = this.context.getRessources().getDrawable(R.drawable.item_);
-   //         //imageView.setImageDrawable(drawable);
    //         return convertView;
    //     }
    //     return null;
@@ -90,11 +87,13 @@ public class ItemCategory implements ListAdapter {
     @Override
     public View getView(int position, View convertView, ViewGroup parent) {
         if (convertView == null)
-            convertView = new Button(this.context);
-        else
-            convertView =  convertView;
-        ((Button) convertView).setText(this.getItem(position).toString());
-        convertView.setTag(this.getItem(position));
+            convertView = LayoutInflater.from(this.context).inflate(R.layout.item_layout, parent, false);
+
+        Item item = this.item_list.get(position);
+
+        TextView itemName = (TextView) convertView.findViewById(R.id.itemName_text);
+        itemName.setText(item.toString());
+        convertView.setTag(item);
         return convertView;
     }
 

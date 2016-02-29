@@ -9,9 +9,12 @@ import android.view.ViewGroup;
 import android.widget.*;
 
 import java.util.ArrayList;
+import java.util.List;
 
 
 public class ShopActivity extends Activity {
+
+
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.shop_layout);
@@ -28,6 +31,16 @@ public class ShopActivity extends Activity {
 
         ListView myList = (ListView) findViewById(R.id.shopListView);
         myList.setAdapter(new ItemCategory(this.getBaseContext(), myArrayList));
+
+        myList.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                Item item = (Item) view.getTag();
+                List<Item> inventoryItems = ((MonApp) getApplication()).getItemInventory();
+                inventoryItems.add(item);
+                }
+        });
+        
 
     }
 }
